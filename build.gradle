@@ -42,6 +42,7 @@ subprojects {
     apply plugin: "idea"
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'maven-publish'
+    apply plugin: 'maven'
     apply plugin: 'signing'
 
     repositories {
@@ -115,11 +116,17 @@ subprojects {
 //                artifact javadocJar
 
                 pom {
-                    description = "paranora spring lab."
+                    description = "spring-cache-starter"
                     scm {
                         connection = "scm:git:git@github.com:paranara/spring-cache-starter.git"
                         developerConnection = "scm:git:ssh://github.com/paranara/spring-cache-starter.git"
                         url = "https://github.com/paranara/spring-cache-starter.git"
+                    }
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
                     }
                     developers {
                         developer {
@@ -135,15 +142,13 @@ subprojects {
 
         repositories {
             maven {
-                credentials {
-                    username findProperty("ossrhUsername") ?: System.getenv("OSSRH_USERNAME")
-                    password findProperty("ossrhPassword") ?: System.getenv("OSSRH_PASSWORD")
-                }
+                def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+                url = isReleasedVersion ? snapshotsRepoUrl : releasesRepoUrl
 
-                if (!isReleasedVersion) {
-                    url "https://oss.sonatype.org/content/repositories/snapshots"
-                } else {
-                    url "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+                credentials {
+                    username 'flyceek'
+                    password 'Fly.Moon.sh.34211'
                 }
             }
         }
