@@ -1,0 +1,27 @@
+plugins {
+    id "java"
+    id "org.springframework.boot"
+}
+
+bootJar {
+    archiveFileName = 'spring-test-app.jar'
+}
+
+jar {
+    enabled = true
+}
+
+dependencies {
+    implementation libraries.apachecommons
+    implementation libraries.jackson
+
+    implementation(project(':spring-cache-starter'))
+
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter', version: springBootVersion
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: springBootVersion
+
+    implementation group: 'com.alibaba', name: 'fastjson', version: fastjsonVersion
+
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: springBootVersion
+    testImplementation group: 'junit', name: 'junit', version: junitVersion
+}

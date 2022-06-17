@@ -1,0 +1,5 @@
+
+dependencies {
+    implementation libraries.springstartercache
+    implementation group: 'javax.servlet', name: 'javax.servlet-api', version: javaxServletVersion
+}

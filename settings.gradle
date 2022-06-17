@@ -1,0 +1,4 @@
+rootProject.name = "spring-cache-starter"
+include 'spring-cache-starter'
+include 'spring-test-app'
+
