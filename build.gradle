@@ -147,8 +147,8 @@ subprojects {
                 url = isReleasedVersion ? snapshotsRepoUrl : releasesRepoUrl
 
                 credentials {
-                    username 'flyceek'
-                    password 'Fly.Moon.sh.34211'
+                    username ''
+                    password ''
                 }
             }
         }
