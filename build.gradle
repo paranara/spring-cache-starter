@@ -117,16 +117,16 @@ subprojects {
                 pom {
                     description = "paranora spring lab."
                     scm {
-                        connection = "scm:git:git@github.com:flyceek/spring-lab.git"
-                        developerConnection = "scm:git:ssh://github.com/flyceek/spring-lab.git"
-                        url = "https://github.com/flyceek/spring-lab"
+                        connection = "scm:git:git@github.com:paranara/spring-cache-starter.git"
+                        developerConnection = "scm:git:ssh://github.com/paranara/spring-cache-starter.git"
+                        url = "https://github.com/paranara/spring-cache-starter.git"
                     }
                     developers {
                         developer {
-                            id = "flyceek"
-                            name = "flyceek"
-                            email = "flyceek@gmail.com"
-                            url = "https://github.com/flyceek"
+                            id = "paranara"
+                            name = "paranara"
+                            email = "paranara@163.com"
+                            url = "https://github.com/paranara"
                         }
                     }
                 }
