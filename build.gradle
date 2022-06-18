@@ -33,7 +33,7 @@ allprojects {
 }
 
 task outt {
-    print project.version
+    println project.version
 }
 
 subprojects {
@@ -41,7 +41,6 @@ subprojects {
     apply plugin: "java-library"
     apply plugin: "idea"
     apply plugin: 'io.spring.dependency-management'
-    apply plugin: 'maven-publish'
     apply plugin: 'maven'
     apply plugin: 'signing'
 
@@ -68,7 +67,6 @@ subprojects {
         main {
             java {
                 srcDirs = ["${projectDir}/src/main/java", "${projectDir}/src/main/groovy"]
-
             }
             resources {
                 srcDirs = ["${projectDir}/src/main/resources"]
@@ -77,7 +75,6 @@ subprojects {
         test {
             java {
                 srcDirs = ["${projectDir}/src/test/java", "${projectDir}/src/test/groovy"]
-
             }
             resources {
                 srcDirs = ["${projectDir}/src/test/resources"]
@@ -105,59 +102,9 @@ subprojects {
 
     artifacts {
         archives sourcesJar
-//        archives javadocJar
+        archives javadocJar
     }
 
-    publishing {
-        publications {
-            mavenJava(MavenPublication) {
-                from components.java
-                artifact sourcesJar
-//                artifact javadocJar
-
-                pom {
-                    description = "spring-cache-starter"
-                    scm {
-                        connection = "scm:git:git@github.com:paranara/spring-cache-starter.git"
-                        developerConnection = "scm:git:ssh://github.com/paranara/spring-cache-starter.git"
-                        url = "https://github.com/paranara/spring-cache-starter.git"
-                    }
-                    licenses {
-                        license {
-                            name = 'The Apache License, Version 2.0'
-                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                        }
-                    }
-                    developers {
-                        developer {
-                            id = "paranara"
-                            name = "paranara"
-                            email = "paranara@163.com"
-                            url = "https://github.com/paranara"
-                        }
-                    }
-                }
-            }
-        }
-
-        repositories {
-            maven {
-                def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-                def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-                url = isReleasedVersion ? snapshotsRepoUrl : releasesRepoUrl
-
-                credentials {
-                    username ''
-                    password ''
-                }
-            }
-        }
-
-    }
-
-    signing {
-        sign publishing.publications.mavenJava
-    }
 
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"

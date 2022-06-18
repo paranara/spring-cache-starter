@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
+/**
+ * The type Custom key generator.
+ */
 public class CustomKeyGenerator extends SimpleKeyGenerator {
     public Object generate(Object target, Method method, Object... params) {
         StringBuffer buffer = new StringBuffer();

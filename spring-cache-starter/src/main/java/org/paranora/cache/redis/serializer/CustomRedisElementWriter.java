@@ -7,15 +7,23 @@ import org.springframework.lang.Nullable;
 import java.nio.ByteBuffer;
 
 /**
- * @author :  paranora
- * @description :  TODO
- * @date :  2021/6/24 18:29
+ * The type Custom redis element writer.
+ *
+ * @param <T> the type parameter
  */
 public class CustomRedisElementWriter<T> implements RedisElementWriter<T> {
 
+    /**
+     * The Serializer.
+     */
     @Nullable
     protected RedisSerializer<T> serializer;
 
+    /**
+     * Instantiates a new Custom redis element writer.
+     *
+     * @param serializer the serializer
+     */
     public CustomRedisElementWriter(RedisSerializer<T> serializer) {
         this.serializer = serializer;
     }

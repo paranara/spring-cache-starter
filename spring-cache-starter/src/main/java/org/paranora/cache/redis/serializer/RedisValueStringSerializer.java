@@ -3,13 +3,15 @@ package org.paranora.cache.redis.serializer;
 import org.springframework.data.redis.serializer.SerializationException;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+
 /**
- * @author :  paranora
- * @description :  TODO
- * @date :  2021/6/25 15:53
+ * The type Redis value string serializer.
  */
 public class RedisValueStringSerializer implements RedisValueSerializer {
 
+    /**
+     * The Serializer.
+     */
     protected StringRedisSerializer serializer=new StringRedisSerializer();
 
     @Override

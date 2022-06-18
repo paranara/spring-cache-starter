@@ -3,11 +3,6 @@ package org.paranora.cache.spring;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-/**
- * @author :  paranora
- * @description :  TODO
- * @date :  2021/6/28 10:28
- */
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class SpringContextAware implements ApplicationContextAware {
 

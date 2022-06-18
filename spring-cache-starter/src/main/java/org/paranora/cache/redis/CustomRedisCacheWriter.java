@@ -19,6 +19,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+/**
+ * The type Custom redis cache writer.
+ */
 public class CustomRedisCacheWriter implements RedisCacheWriter {
 
     private final RedisConnectionFactory connectionFactory;
@@ -26,14 +29,32 @@ public class CustomRedisCacheWriter implements RedisCacheWriter {
     private final CacheStatisticsCollector statistics;
 
 
+    /**
+     * Instantiates a new Custom redis cache writer.
+     *
+     * @param connectionFactory the connection factory
+     */
     CustomRedisCacheWriter(RedisConnectionFactory connectionFactory) {
         this(connectionFactory, Duration.ZERO);
     }
 
+    /**
+     * Instantiates a new Custom redis cache writer.
+     *
+     * @param connectionFactory the connection factory
+     * @param sleepTime         the sleep time
+     */
     CustomRedisCacheWriter(RedisConnectionFactory connectionFactory, Duration sleepTime) {
         this(connectionFactory, sleepTime, CacheStatisticsCollector.none());
     }
 
+    /**
+     * Instantiates a new Custom redis cache writer.
+     *
+     * @param connectionFactory        the connection factory
+     * @param sleepTime                the sleep time
+     * @param cacheStatisticsCollector the cache statistics collector
+     */
     CustomRedisCacheWriter(RedisConnectionFactory connectionFactory, Duration sleepTime,
                             CacheStatisticsCollector cacheStatisticsCollector) {
 
@@ -184,10 +205,20 @@ public class CustomRedisCacheWriter implements RedisCacheWriter {
         return new CustomRedisCacheWriter(connectionFactory, sleepTime, cacheStatisticsCollector);
     }
 
+    /**
+     * Lock.
+     *
+     * @param name the name
+     */
     void lock(String name) {
         execute(name, connection -> doLock(name, connection));
     }
 
+    /**
+     * Unlock.
+     *
+     * @param name the name
+     */
     void unlock(String name) {
         executeLockFree(connection -> doUnlock(name, connection));
     }
@@ -200,6 +231,13 @@ public class CustomRedisCacheWriter implements RedisCacheWriter {
         return connection.del(createCacheLockKey(name));
     }
 
+    /**
+     * Do check lock boolean.
+     *
+     * @param name       the name
+     * @param connection the connection
+     * @return the boolean
+     */
     boolean doCheckLock(String name, RedisConnection connection) {
         return connection.exists(createCacheLockKey(name));
     }

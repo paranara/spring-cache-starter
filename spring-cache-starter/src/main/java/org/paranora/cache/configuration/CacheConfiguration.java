@@ -21,9 +21,8 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import java.net.UnknownHostException;
 
 /**
- * @author :  paranora
- * @description :  TODO
- * @date :  2021/5/21 9:53
+ * The type Cache configuration.
+ *
  */
 @AutoConfigureOrder(0)
 @EnableCaching
@@ -33,15 +32,32 @@ import java.net.UnknownHostException;
 @AutoConfigureAfter({RedisConfiguration.class})
 public class CacheConfiguration extends CachingConfigurerSupport {
 
+    /**
+     * The Properties.
+     */
     @Autowired
     protected CacheProperties properties;
 
+    /**
+     * Cache manager cache manager.
+     *
+     * @param redisConnectionFactory the redis connection factory
+     * @return the cache manager
+     * @throws Exception the exception
+     */
     @Bean
     @ConditionalOnBean({RedisConnectionFactory.class,})
     public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) throws Exception {
         return CacheManagerFactory.customCacheManager(redisConnectionFactory, properties);
     }
 
+    /**
+     * String redis template string redis template.
+     *
+     * @param redisConnectionFactory the redis connection factory
+     * @return the string redis template
+     * @throws UnknownHostException the unknown host exception
+     */
     @Bean
     @ConditionalOnMissingBean(StringRedisTemplate.class)
     public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory redisConnectionFactory) throws UnknownHostException {

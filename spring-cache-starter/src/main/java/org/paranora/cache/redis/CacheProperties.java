@@ -17,9 +17,7 @@ import javax.annotation.PostConstruct;
 import java.util.LinkedHashMap;
 
 /**
- * @author :  paranora
- * @description :  TODO
- * @date :  2021/5/21 9:51
+ * The type Cache properties.
  */
 @Data
 @Configuration
@@ -41,10 +39,16 @@ public class CacheProperties implements BeanFactoryAware {
 
     private CustomCacheKeyPrefix cacheKeyPrefix;
 
+    /**
+     * Instantiates a new Cache properties.
+     */
     public CacheProperties() {
         defaultProperties();
     }
 
+    /**
+     * Default properties.
+     */
     public void defaultProperties() {
         this.exprieTime = 86400;
         this.keyPrefix = "";
@@ -53,6 +57,9 @@ public class CacheProperties implements BeanFactoryAware {
         this.keySerializerClass = "org.paranora.cache.redis.serializer.RedisKeyJdkSerializer";
     }
 
+    /**
+     * Init.
+     */
     @PostConstruct
     public void init() {
         createCacheKeyPrefixBean();
@@ -60,6 +67,9 @@ public class CacheProperties implements BeanFactoryAware {
         createRedisKeySerializerBean();
     }
 
+    /**
+     * Create cache key prefix bean.
+     */
     protected void createCacheKeyPrefixBean() {
         if (!ObjectUtils.isEmpty(this.cacheKeyPrefix)) return;
         BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(CustomCacheKeyPrefix.class);
@@ -70,6 +80,9 @@ public class CacheProperties implements BeanFactoryAware {
         setCacheKeyPrefix(this.beanFactory.getBean(CustomCacheKeyPrefix.class));
     }
 
+    /**
+     * Create redis value serializer bean.
+     */
     protected void createRedisValueSerializerBean() {
         if (!ObjectUtils.isEmpty(this.valueSerializer) || ObjectUtils.isEmpty(this.valueSerializerClass)) return;
         BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(this.valueSerializerClass);
@@ -78,6 +91,9 @@ public class CacheProperties implements BeanFactoryAware {
         setValueSerializer(this.beanFactory.getBean(RedisValueSerializer.class));
     }
 
+    /**
+     * Create redis key serializer bean.
+     */
     protected void createRedisKeySerializerBean() {
         if (!ObjectUtils.isEmpty(this.keySerializer) || ObjectUtils.isEmpty(this.keySerializerClass)) return;
         BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(this.keySerializerClass);
@@ -86,6 +102,11 @@ public class CacheProperties implements BeanFactoryAware {
         setKeySerializer(this.beanFactory.getBean(RedisKeySerializer.class));
     }
 
+    /**
+     * Gets bean factory.
+     *
+     * @return the bean factory
+     */
     protected DefaultListableBeanFactory getBeanFactory() {
         return (DefaultListableBeanFactory) this.beanFactory;
     }

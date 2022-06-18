@@ -10,6 +10,9 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+/**
+ * The type Redis configuration.
+ */
 @AutoConfigureOrder(0)
 @Configuration
 @ConditionalOnProperty(value = "redis.enabled", havingValue = "true")

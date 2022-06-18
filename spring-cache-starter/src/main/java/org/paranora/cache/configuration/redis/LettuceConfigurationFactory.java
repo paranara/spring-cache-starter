@@ -7,8 +7,17 @@ import org.springframework.data.redis.connection.lettuce.LettucePoolingClientCon
 
 import java.time.Duration;
 
+/**
+ * The type Lettuce configuration factory.
+ */
 public class LettuceConfigurationFactory {
 
+    /**
+     * Create redis standalone configuration redis connection factory.
+     *
+     * @param redis the redis
+     * @return the redis connection factory
+     */
     public static RedisConnectionFactory createRedisStandaloneConfiguration(final RedisProperties redis)     {
         RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration();
         configuration.setHostName(redis.getHost());
@@ -18,6 +27,12 @@ public class LettuceConfigurationFactory {
         return factory;
     }
 
+    /**
+     * Create redis sentinel connection factory redis connection factory.
+     *
+     * @param redis the redis
+     * @return the redis connection factory
+     */
     public static RedisConnectionFactory createRedisSentinelConnectionFactory(final RedisProperties redis) {
         final LettucePoolingClientConfiguration lettucePoolingClientConfiguration = prepareLettucePoolingClientConfiguration(redis);
         RedisSentinelConfiguration configuration =RedisConfigurationFactory.prepareSentinelConfig(redis);
@@ -26,6 +41,12 @@ public class LettuceConfigurationFactory {
 
     }
 
+    /**
+     * Create redis cluster configuration factory redis connection factory.
+     *
+     * @param redis the redis
+     * @return the redis connection factory
+     */
     public static RedisConnectionFactory createRedisClusterConfigurationFactory(final RedisProperties redis) {
         final LettucePoolingClientConfiguration lettucePoolingClientConfiguration = prepareLettucePoolingClientConfiguration(redis);
         RedisClusterConfiguration configuration=RedisConfigurationFactory.prepareClusterConfig(redis);
@@ -33,6 +54,12 @@ public class LettuceConfigurationFactory {
         return factory;
     }
 
+    /**
+     * Prepare lettuce pooling client configuration lettuce pooling client configuration.
+     *
+     * @param redis the redis
+     * @return the lettuce pooling client configuration
+     */
     public static LettucePoolingClientConfiguration prepareLettucePoolingClientConfiguration(final RedisProperties redis){
         GenericObjectPoolConfig poolConfig=new GenericObjectPoolConfig();
         poolConfig=RedisConfigurationFactory.preparePoolConfig(redis,poolConfig);

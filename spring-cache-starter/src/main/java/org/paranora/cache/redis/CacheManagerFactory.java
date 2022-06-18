@@ -13,8 +13,18 @@ import java.time.Duration;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * The type Cache manager factory.
+ */
 public class CacheManagerFactory {
 
+    /**
+     * Custom cache manager cache manager.
+     *
+     * @param redisConnectionFactory the redis connection factory
+     * @param properties             the properties
+     * @return the cache manager
+     */
     public static CacheManager customCacheManager(RedisConnectionFactory redisConnectionFactory, CacheProperties properties) {
         RedisKeySerializer keySerializer = properties.getKeySerializer();
         RedisValueSerializer valueSerializer = properties.getValueSerializer();

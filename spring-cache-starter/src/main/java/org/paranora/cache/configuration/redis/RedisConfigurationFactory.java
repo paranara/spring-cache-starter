@@ -7,8 +7,19 @@ import org.springframework.util.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Redis configuration factory.
+ */
 public class RedisConfigurationFactory {
 
+    /**
+     * Prepare pool config t.
+     *
+     * @param <T>        the type parameter
+     * @param redis      the redis
+     * @param poolConfig the pool config
+     * @return the t
+     */
     public static <T extends GenericObjectPoolConfig> T preparePoolConfig(final RedisProperties redis, T poolConfig) {
         final RedisProperties.PoolConfiguration pool = redis.getPool();
         poolConfig.setMaxTotal(pool.getMaxActive());
@@ -34,6 +45,12 @@ public class RedisConfigurationFactory {
         return poolConfig;
     }
 
+    /**
+     * Prepare cluster config redis cluster configuration.
+     *
+     * @param redis the redis
+     * @return the redis cluster configuration
+     */
     public static RedisClusterConfiguration prepareClusterConfig(final RedisProperties redis) {
         if (null == redis.getCluster() || !redis.getCluster().isEnabled() || null == redis.getCluster().getNodes()) {
             return null;
@@ -44,6 +61,12 @@ public class RedisConfigurationFactory {
         return clusterConfiguration;
     }
 
+    /**
+     * Prepare sentinel config redis sentinel configuration.
+     *
+     * @param redis the redis
+     * @return the redis sentinel configuration
+     */
     public static RedisSentinelConfiguration prepareSentinelConfig(final RedisProperties redis) {
         if (redis.getSentinel() == null || !redis.getSentinel().isEnabled() || null == redis.getCluster().getNodes()) {
             return null;

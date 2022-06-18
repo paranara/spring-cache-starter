@@ -10,6 +10,9 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The type Redis properties.
+ */
 @Data
 @ConfigurationProperties(value = "redis", ignoreUnknownFields = false)
 public class RedisProperties {
@@ -35,10 +38,25 @@ public class RedisProperties {
     private int retryInterval = 1500;
     private int pingConnectionInterval = 1000;
 
+    /**
+     * The enum Product.
+     */
     public enum Product {
+        /**
+         * Jedis product.
+         */
         Jedis("1", "Jedis", "Jedis", ""),
+        /**
+         * Redisson product.
+         */
         Redisson("2", "Redisson", "Redisson", ""),
+        /**
+         * Lettuce product.
+         */
         Lettuce("3", "Lettuce", "Lettuce", ""),
+        /**
+         * Null product.
+         */
         NULL(null, null, null, null);
 
         private String no;
@@ -53,14 +71,29 @@ public class RedisProperties {
             this.name = name;
         }
 
+        /**
+         * No string.
+         *
+         * @return the string
+         */
         public String no() {
             return no;
         }
 
+        /**
+         * Code string.
+         *
+         * @return the string
+         */
         public String code() {
             return code;
         }
 
+        /**
+         * Description string.
+         *
+         * @return the string
+         */
         public String description() {
             return this.description;
         }
@@ -72,12 +105,33 @@ public class RedisProperties {
         }
     }
 
+    /**
+     * The enum Cluster type.
+     */
     public enum ClusterType {
+        /**
+         * Sentinel cluster type.
+         */
         Sentinel("1", "Sentinel", "Sentinel", ""),
+        /**
+         * Master slave cluster type.
+         */
         MasterSlave("2", "PROXY", "MasterSlave", ""),
+        /**
+         * Single cluster type.
+         */
         Single("3", "Single", "Single", ""),
+        /**
+         * Replicated cluster type.
+         */
         Replicated("4", "Replicated", "Replicated", ""),
+        /**
+         * Cluster cluster type.
+         */
         Cluster("5", "Cluster", "Cluster", ""),
+        /**
+         * Null cluster type.
+         */
         NULL(null, null, null, null);
 
         private String no;
@@ -92,14 +146,29 @@ public class RedisProperties {
             this.name = name;
         }
 
+        /**
+         * No string.
+         *
+         * @return the string
+         */
         public String no() {
             return no;
         }
 
+        /**
+         * Code string.
+         *
+         * @return the string
+         */
         public String code() {
             return code;
         }
 
+        /**
+         * Description string.
+         *
+         * @return the string
+         */
         public String description() {
             return this.description;
         }
@@ -111,6 +180,9 @@ public class RedisProperties {
         }
     }
 
+    /**
+     * The type Cluster configuration.
+     */
     @Data
     public static class ClusterConfiguration implements Serializable {
         private String type = ClusterType.Cluster.code();
@@ -131,6 +203,9 @@ public class RedisProperties {
         private List<String> nodes;
     }
 
+    /**
+     * The type Pool configuration.
+     */
     @Data
     public static class PoolConfiguration implements Serializable {
 
@@ -149,6 +224,9 @@ public class RedisProperties {
         private int maxWait = -1;
     }
 
+    /**
+     * The type Sentinel configuration.
+     */
     @Data
     public static class SentinelConfiguration implements Serializable {
         private boolean enabled = false;

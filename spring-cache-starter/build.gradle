@@ -1,3 +1,4 @@
+apply from: rootProject.file("build-publish-mavencentral.gradle")
 
 dependencies {
     implementation libraries.springstartercache

@@ -7,13 +7,17 @@ import org.springframework.util.Assert;
 
 import java.nio.ByteBuffer;
 
+
 /**
- * @author :  paranora
- * @description :  TODO
- * @date :  2021/6/25 10:38
+ * The type Custom redis key element reader.
  */
 public class CustomRedisKeyElementReader extends CustomRedisElementReader<String> implements RedisKeyElementReader {
 
+    /**
+     * Instantiates a new Custom redis key element reader.
+     *
+     * @param serializer the serializer
+     */
     public CustomRedisKeyElementReader(RedisKeySerializer serializer) {
         super(serializer);
     }

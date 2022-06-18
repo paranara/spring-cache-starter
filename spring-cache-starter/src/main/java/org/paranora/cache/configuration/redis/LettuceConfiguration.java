@@ -10,6 +10,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 
+/**
+ * The type Lettuce configuration.
+ */
 @AutoConfigureOrder(0)
 @Profile({"lettuce"})
 @Configuration
@@ -20,6 +23,11 @@ public class LettuceConfiguration {
     @Autowired
     private RedisProperties properties;
 
+    /**
+     * Lettuce connection factory redis connection factory.
+     *
+     * @return the redis connection factory
+     */
     @Bean
     @ConditionalOnMissingBean(RedisConnectionFactory.class)
     public RedisConnectionFactory lettuceConnectionFactory() {

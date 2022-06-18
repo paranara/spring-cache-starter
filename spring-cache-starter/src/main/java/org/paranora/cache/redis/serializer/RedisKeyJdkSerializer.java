@@ -2,6 +2,9 @@ package org.paranora.cache.redis.serializer;
 
 import org.paranora.cache.redis.Key;
 
+/**
+ * The type Redis key jdk serializer.
+ */
 public class RedisKeyJdkSerializer extends RedisKeySerializerAbs implements RedisKeySerializer {
 
     @Override

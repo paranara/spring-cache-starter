@@ -6,13 +6,20 @@ import org.springframework.lang.Nullable;
 
 import java.nio.ByteBuffer;
 
+
 /**
- * @author :  paranora
- * @description :  TODO
- * @date :  2021/6/25 10:14
+ * The interface Redis key element reader.
  */
 public interface RedisKeyElementReader extends RedisElementReader<String> {
 
+    /**
+     * Read string.
+     *
+     * @param buffer the buffer
+     * @param name   the name
+     * @param prefix the prefix
+     * @return the string
+     */
     @Nullable
     String read(ByteBuffer buffer,String name,KeyPrefix prefix);
 }

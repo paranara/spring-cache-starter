@@ -12,15 +12,22 @@ import org.springframework.util.ObjectUtils;
 import java.util.Arrays;
 
 /**
- * @author :  paranora
- * @description :  TODO
- * @date :  2021/6/23 17:25
+ * The type Redis key serializer abs.
  */
 public abstract class RedisKeySerializerAbs implements RedisKeySerializer {
 
+    /**
+     * The String serializer.
+     */
     protected StringRedisSerializer stringSerializer = new StringRedisSerializer();
+    /**
+     * The Jdk serializer.
+     */
     protected JdkSerializationRedisSerializer jdkSerializer = new JdkSerializationRedisSerializer();
 
+    /**
+     * The Key prefix.
+     */
     @Autowired
     protected KeyPrefix keyPrefix;
 
@@ -29,14 +36,30 @@ public abstract class RedisKeySerializerAbs implements RedisKeySerializer {
         return serialize(parseKey(key));
     }
 
+    /**
+     * Key prefix.
+     *
+     * @param keyPrefix the key prefix
+     */
     public void keyPrefix(KeyPrefix keyPrefix) {
         this.keyPrefix = keyPrefix;
     }
 
+    /**
+     * Key prefix key prefix.
+     *
+     * @return the key prefix
+     */
     public KeyPrefix keyPrefix() {
         return this.keyPrefix;
     }
 
+    /**
+     * Parse key key.
+     *
+     * @param key the key
+     * @return the key
+     */
     protected Key parseKey(String key) {
         int delimiterIndex = -1;
 
@@ -69,10 +92,28 @@ public abstract class RedisKeySerializerAbs implements RedisKeySerializer {
                 .build();
     }
 
+    /**
+     * Serialize key prifix byte [ ].
+     *
+     * @param key the key
+     * @return the byte [ ]
+     */
     protected abstract byte[] serializeKeyPrifix(Key key);
 
+    /**
+     * Serialize key content byte [ ].
+     *
+     * @param key the key
+     * @return the byte [ ]
+     */
     protected abstract byte[] serializeKeyContent(Key key);
 
+    /**
+     * Serialize byte [ ].
+     *
+     * @param key the key
+     * @return the byte [ ]
+     */
     protected byte[] serialize(Key key) {
         byte[] prefixBytes = serializeKeyPrifix(key);
         byte[] contentBytes = serializeKeyContent(key);

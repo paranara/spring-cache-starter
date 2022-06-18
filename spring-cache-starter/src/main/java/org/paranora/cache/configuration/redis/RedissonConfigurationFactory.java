@@ -9,8 +9,17 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 
 import java.util.stream.Collectors;
 
+/**
+ * The type Redisson configuration factory.
+ */
 public class RedissonConfigurationFactory {
 
+    /**
+     * Create redis configuration factory redis connection factory.
+     *
+     * @param redis the redis
+     * @return the redis connection factory
+     */
     public static RedisConnectionFactory createRedisConfigurationFactory(final RedisProperties redis) {
         if(RedisProperties.ClusterType.Cluster.code().equalsIgnoreCase(redis.getCluster().getType())){
             return createRedisClusterConfigurationFactory(redis);
@@ -21,6 +30,12 @@ public class RedissonConfigurationFactory {
         }
     }
 
+    /**
+     * Create redis cluster configuration factory redis connection factory.
+     *
+     * @param redis the redis
+     * @return the redis connection factory
+     */
     public static RedisConnectionFactory createRedisClusterConfigurationFactory(final RedisProperties redis) {
         if (null == redis.getCluster() || !redis.getCluster().isEnabled()) {
             return null;
@@ -54,6 +69,12 @@ public class RedissonConfigurationFactory {
         return factory;
     }
 
+    /**
+     * Create redis sentine configuration factory redis connection factory.
+     *
+     * @param redis the redis
+     * @return the redis connection factory
+     */
     public static RedisConnectionFactory createRedisSentineConfigurationFactory(final RedisProperties redis) {
         if (null == redis.getSentinel() || !redis.getSentinel().isEnabled() || !redis.getCluster().isEnabled()) {
             return null;

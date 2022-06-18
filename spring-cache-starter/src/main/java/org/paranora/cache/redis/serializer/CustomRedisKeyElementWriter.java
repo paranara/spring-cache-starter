@@ -5,13 +5,17 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 
 import java.nio.ByteBuffer;
 
+
 /**
- * @author :  paranora
- * @description :  TODO
- * @date :  2021/6/25 10:18
+ * The type Custom redis key element writer.
  */
 public class CustomRedisKeyElementWriter extends CustomRedisElementWriter<String> implements RedisKeyElementWriter {
 
+    /**
+     * Instantiates a new Custom redis key element writer.
+     *
+     * @param serializer the serializer
+     */
     public CustomRedisKeyElementWriter(RedisKeySerializer serializer) {
         super(serializer);
     }
