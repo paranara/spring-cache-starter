@@ -8,7 +8,6 @@ cache:
     employeeInfoCache: 86400
     licenseCache: 86400
 
-
 spring:
   application:
     name: spring-test-app

@@ -45,7 +45,7 @@
     <logger name="org.springframework.remoting.httpinvoker" level="ERROR"></logger>
     <logger name="org.springframework.beans.TypeConverterDelegate" level="ERROR"></logger>
 
-    <root level="ALL">
+    <root level="DEBUG">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="ROLLING_INFO_FILE"/>
         <appender-ref ref="ROLLING_ERROR_FILE"/>

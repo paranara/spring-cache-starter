@@ -1,5 +1,5 @@
 cache:
-  keyPrefix: employee_
+  keyPrefix: paranora-cache-test
   #缓存过期时间（单位秒）
   exprieTimes:
     employeeInfoCache: 86400
